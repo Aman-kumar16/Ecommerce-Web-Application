@@ -1,0 +1,6 @@
+CREATE USER 'ecommerce'@'localhost' IDENTIFIED BY 'ecommerce';
+
+GRANT ALL PRIVILEGES ON * . * TO 'ecommerce'@'localhost';
+
+
+ALTER USER 'ecommerce'@'localhost' IDENTIFIED WITH mysql_native_password BY 'ecommerce';

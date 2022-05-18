@@ -1,0 +1,60 @@
+<div class="main-content">
+    
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row m-3">
+
+                <div *ngFor="let tempProduct of products" class="col-md-3">
+                    <div class="product-box">
+                        <a routerLink="/products/{{ tempProduct.id }}"> 
+                            <img src="{{ tempProduct.imageUrl }}" alt="icon" class="img-fluid" style="width: 35%;">
+                        </a>
+                        <a routerLink="/products/{{ tempProduct.id }}">
+                            <h1>{{ tempProduct.name }}</h1>
+                        </a>
+                        <div class="price">{{ tempProduct.price | currency:'USD' }}</div>
+                        <button (click)="addToCart(tempProduct)" class="btn  btn-outline-primary">Add to cart</button>
+                    </div>
+                </div>
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- if no products are listed then display not found message -->
+    <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
+        No products found.
+    </div>
+
+
+    <!-- pagination-bar bootstrap -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="d-flex justify-content-center">
+
+                <ngb-pagination [collectionSize]="theTotalElements" 
+                                [(page)]="thePageNumber"
+                                [pageSize]="thePageSize"
+                                (pageChange)="listProducts()" 
+                                [maxSize]="3"
+                                [rotate]="true" 
+                                [boundaryLinks]="true">
+                </ngb-pagination>
+            
+                <div class="pagination-menu">
+                    <span>Page Size</span>
+                        <select #size (change)="updatePageSize(size.value)"> <!--value will be passed as string-->
+                            <option selected="true" value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+    
+</div>

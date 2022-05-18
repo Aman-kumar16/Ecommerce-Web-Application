@@ -1,0 +1,53 @@
+package com.tcs.ecommerce.service;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.tcs.ecommerce.dao.CustomerRepository;
+import com.tcs.ecommerce.entity.Customer;
+
+@Service
+public class RegisterUserImpl implements RegisterUserService{
+
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Override
+	@Transactional
+	public Customer register(Customer customer) throws Exception{
+
+		// need to check if the customer is already present or not.
+		// if present then don't save it and if not then save it.
+		String email = customer.getEmail();
+		
+		Customer respCustomer = customerRepository.findByEmail(email);
+		
+		if(respCustomer == null) {
+			
+			String ecodedPassword = passwordEncoder.encode(customer.getPassword());
+
+			
+			customer.setPassword(ecodedPassword);
+			//save the customer
+			customerRepository.save(customer);
+		
+			//get the saved customer from the database
+			Customer response = customerRepository.findByEmail(email);
+			
+			return response;
+		}else if(respCustomer != null){
+			throw new Exception("already registered");
+		}
+		
+		return null;
+	
+	}
+
+	
+}

@@ -1,0 +1,221 @@
+-- -----------------------------------------------------
+-- Schema ecommerce_schema
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `ecommerce_schema`;
+
+CREATE SCHEMA `ecommerce_schema`;
+USE `ecommerce_schema` ;
+
+-- -----------------------------------------------------
+-- Table `ecommerce_schema`.`product_category`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ecommerce_schema`.`product_category` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `category_name` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;
+
+-- -----------------------------------------------------
+-- Table `ecommerce_schema`.`product`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ecommerce_schema`.`product` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `sku` VARCHAR(255) DEFAULT NULL,
+  `name` VARCHAR(255) DEFAULT NULL,
+  `description` VARCHAR(255) DEFAULT NULL,
+  `price` DECIMAL(13,2) DEFAULT NULL,
+  `image_url` VARCHAR(255) DEFAULT NULL,
+  `active` BIT DEFAULT 1,
+  `stock` INT(11) DEFAULT NULL,
+   `date_created` DATETIME(6) DEFAULT NULL,
+  `last_updated` DATETIME(6) DEFAULT NULL,
+  `category_id` BIGINT(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_category` (`category_id`),
+  CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `product_category` (`id`)
+) 
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;
+
+
+
+-- -----------------------------------------------------
+-- Adding sample data
+-- -----------------------------------------------------
+
+
+INSERT INTO PRODUCT_CATEGORY(CATEGORY_NAME) VALUES ('Books');
+INSERT INTO PRODUCT_CATEGORY(CATEGORY_NAME) VALUES ('Mobiles');
+INSERT INTO PRODUCT_CATEGORY(CATEGORY_NAME) VALUES ('Laptops');
+INSERT INTO PRODUCT_CATEGORY(CATEGORY_NAME) VALUES ('Toys');
+
+
+
+-- -----------------------------------------------------
+-- Books sample data
+-- -----------------------------------------------------
+
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('BOOK-1000', 'Mastering HTML, CSS & Javascript', 
+		'Learn and Mastering HTML, CSS & JavaScript from basics',
+        'assets/images/products/books/book-1.jpg', 1, 100, 19.99, 1, NOW());
+        
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('BOOK-1001', 'Java Programming', 
+		'Learn and Mastering Java from basics',
+        'assets/images/products/books/book-2.jpg', 1, 100, 29.99, 1, NOW());
+        
+        
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('BOOK-1002', 'Zero To Mastery In Python Programming', 
+		'Zero To Mastery In Python Programming, Best Python Book For Beginners, ',
+        'assets/images/products/books/book-3.jpg', 1, 100, 24.99, 1, NOW());
+        
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('BOOK-1003', 'The Power of Your Subconscious Mind', 
+		'This remarkable book by Dr. Joseph Murphy, one of the pioneering voices of affirmative thinking',
+        'assets/images/products/books/book-4.jpg', 1, 100, 9.99, 1, NOW());
+        
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('BOOK-1004', 'The Psychology of Money', 
+		'Timeless lessons on wealth, greed, and happiness doing well with money ',
+        'assets/images/products/books/book-5.jpg', 1, 100, 8.99, 1, NOW());
+        
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('BOOK-1005', 'The 5 AM Club', 
+		'The 5 AM Club: Own Your Morning, Elevate Your Life ',
+        'assets/images/products/books/book-6.jpg', 1, 100, 9.99, 1, NOW());
+        
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('BOOK-1006', 'How to Win Friends and Influence People', 
+		'International bestseller. Over 30 million copies sold worldwide. How to Win Friends and Influence People by bestselling author Dale Carnegie is one of the most ground-breaking self-help books of all time.',
+        'assets/images/products/books/book-7.jpg', 1, 100, 7.99, 1, NOW());
+
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('BOOK-1007', 'The Intelligent Investor ', 
+		'It is a widely acclaimed book by Benjamin Graham on value investing. The book aims at preventing potential investors from substantial errors and also teaches them strategies to achieve long-term investment goals.',
+        'assets/images/products/books/book-8.jpg', 1, 100, 13.99, 1, NOW());
+
+
+
+-- -----------------------------------------------------
+-- Mobiles sample data
+-- -----------------------------------------------------
+
+
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Mobile-1000', 'Samsung Galaxy M12 ', 
+'(White,4GB RAM, 64GB Storage) 6000 mAh with 8nm Processor | True 48 MP Quad Camera | 90Hz Refresh Rate',
+ 'assets/images/products/mobiles/mobile-1.jpg' ,1,100,155.99,2, NOW());
+ 
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Mobile-1001', 'Apple iPhone 12 (128GB) - Blue', 
+'6.1-inch (15.5 cm diagonal) Super Retina XDR display| A14 Bionic chip, the fastest chip ever in a smartphone',
+'assets/images/products/mobiles/mobile-2.jpg' ,1,100,790.99,2, NOW());
+ 
+ INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Mobile-1002', 'Apple iPhone 13 (128GB) - Pink', 
+'Advanced dual-camera system with 12MP Wide and Ultra Wide cameras; Photographic Styles, Smart HDR 4, Night mode | A15 Bionic chip  ',
+ 'assets/images/products/mobiles/mobile-3.jpg' ,1,100,990.99,2, NOW());
+ 
+ INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Mobile-1003', 'Apple iPhone 13 Pro (128GB) - Sierra Blue', 
+'A15 Bionic chip for lightning-fast performance | 15 cm (6.1-inch) Super Retina XDR display with ProMotion for a faster, more responsive feel',
+ 'assets/images/products/mobiles/mobile-4.jpg' ,1,100,1587.99,2, NOW());
+ 
+ INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Mobile-1004', 'Apple iPhone 13 Pro Max (128 GB) - Alpine Green', 
+'A15 Bionic chip for lightning-fast performance |17 cm (6.7-inch) Super Retina XDR display with ProMotion for a faster, more responsive feel',
+ 'assets/images/products/mobiles/mobile-5.jpg' ,1,100,1718.99,2, NOW());
+ 
+ INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Mobile-1005', 'OnePlus Nord CE 2 5G (Gray Mirror, 6GB RAM, 128GB Storage)', 
+'65W SUPERVOOC – Accelerated charge velocity shall rocket the 4500mAh battery to a days power in 15 minutes. Certified by TÜV Rheinland, one shall “Charge & Play” with absolute peace of mind. 6.43 inch, 90Hz FHD+ AMOLED Display ',
+ 'assets/images/products/mobiles/mobile-6.jpg' ,1,100,1604.99,2, NOW());
+
+
+
+
+-- -----------------------------------------------------
+-- Laptops sample data
+-- -----------------------------------------------------
+
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Laptop-1000', '2020 Apple MacBook Air Laptop: Apple M1 chip, 13.3-inch', 
+'3.74 cm Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold
+ The Apple M1 chip with an 8-core CPU delivers up to 3.5x faster performance',
+ 'assets/images/products/laptops/laptop-1.jpg' ,1,100,1125.73,3, NOW());
+ 
+ INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Laptop-1001', '2021 Apple MacBook Pro (14-inch/35.97 cm)-Space Grey', 
+'Apple M1 Pro chip with 8‑core CPU and 14‑core GPU, 16GB RAM, 512GB SSD, Six-speaker sound system with force-cancelling woofers.
+ Up to 32-core GPU with up to 13x faster performance for graphics-intensive apps and games',
+ 'assets/images/products/laptops/laptop-2.jpg' ,1,100,1425.73,3, NOW());
+ 
+ INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Laptop-1002', 'Dell New Vostro 3400 Laptop, Intel i5-1135G7, Win11 + Office 21, 8GB GDDR4, 512GB SSD, 14-inch', 
+'Processor: Intel i5-1135G7 (2.40 GHz up to 4.20 GHz), RAM & Storage: 8GB DDR4 (2DIMM Slots) & 512GB SSD Software: Win 11 + Office H&S 2021
+ Ports: "USB 3.2 Gen 1 (x2), USB2.0 (x1), HDMI 1.4',
+ 'assets/images/products/laptops/laptop-3.jpg' ,1,100,653.31,3, NOW());
+ 
+ INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Laptop-1003', 'Honor MagicBook X 15, Intel Core i3-10110U / 15.6 inch (39.62 cm) FHD IPS Anti-Glare Thin and Light Laptop', 
+'8GB/256GB PCIe SSD/Windows 10/Aluminium Metal Body/1.56Kg), Silver 65W Type-C Fast Charging, Eye Comfort Mode
+ DDR4 SDRAM ‎Bluetooth, 5 GHz Radio Frequency, 802.11a/g/n/ac, 2.4 GHz Radio Frequency',
+ 'assets/images/products/laptops/laptop-4.jpg' ,1,100,530.39,3, NOW());
+ 
+ INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Laptop-1004', 'Acer Predator Helios 300 11th Gen Intel Core i9-11900H 15.6" (39.62cms) FHD IPS Gaming Laptop ', 
+'16 GB/1TB SSD/Win 11 Home/6 GB Graphics/NVIDIA GeForce RTX 3060/360 Hz, Black, 2.3 kg, Full HD 1920 x 1080, high-brightness (300 nits) Acer ComfyView LED-backlit TFT LCD, supporting 360 Hz
+ , Graphics : NVIDIA GeForce RTX 3060',
+ 'assets/images/products/laptops/laptop-5.jpg' ,1,100,1876.90,3, NOW());
+ 
+ INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Laptop-1005', 'MSI GF75 Thin, Intel i5-10300H, 17.3" FHD IPS-Level 144Hz Panel Laptop', 
+'8GB/512GB NVMe SSD/Windows 10 Home/Nvidia GTX1650 4GB GDDR6/Black/2.2Kg , Display: 44cm FHD (1920*1080), IPS-Level 144Hz Thin Bezel, 45% NTSC
+ ,Keyboard: Steelseries RED Backlit Keyboard',
+ 'assets/images/products/laptops/laptop-6.jpg' ,1,100,761.54,3, NOW());
+ 
+ INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Laptop-1006', 'MSI Gaming Katana GF66, Intel 11th Gen. i5-11400H, 40CM FHD 144Hz Gaming Laptop', 
+'16GB/512GB NVMe SSD/Windows 10 Home/Nvidia RTX 3050Ti 4GB GDDR6/ Black/2.25Kg Display: 40CM FHD (1920*1080), 144Hz 45%NTSC 
+,Ultra Thin and light design | Laptop weight: 2.25 kg ',
+ 'assets/images/products/laptops/laptop-7.jpg' ,1,100,991.33,3, NOW());
+ 
+
+
+-- -----------------------------------------------------
+-- Toys sample data
+-- -----------------------------------------------------
+
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Toy-1000', 'Kiddie Castle Road Runner Kick Ranger Scooter for Kids (Red)', 
+'The kick scooter designs with adjustable handlebar, which means that you can adjust T-bar with 3 adjustable height options to accommodate ages 3 to 12 Years, suitable for 33" to 60" height child. ',
+'assets/images/products/toys/toy-1.jpg' , 1, 100, 12.8, 4, NOW());
+
+
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Toy-1001', 'FTAFAT 100% Best Quality GIFT (92 Pieces +8 Tyres) 100 Pcs Building Blocks, Creative ,Learning Toy', 
+'100% BEST QUALITY The Building Block Is Made Up Of High Quality Polypropylene Soft Plastic And The Toy Is Made In India. It Is Very Easy To Make With Its Interlocking Feature.',
+'assets/images/products/toys/toy-2.jpg' , 1, 100, 4.99, 4, NOW());
+
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Toy-1002', 'AmtiQ Roll Ball Toy with 4 Layer Ball Drop Tower Run with Roll Swirling Ramps for Baby and Toddler Toy Set  (Multicolor)', 
+'The toy set includes 5 ramps, 3 plastic balls with rattle sound, and 1 animal face. The educational toy is to be assembled, and it is easy to assemble. Your little baby will put the ball into the face of a lovely animal',
+'assets/images/products/toys/toy-3.jpg' , 1, 100, 5.99, 4, NOW());
+
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Toy-1003', 'Glacier Mechanical Transparent Toy Car With 3D Display And 360 Degree Rotating Concept Racing Playing Car Having LED Lights and Music for Kids ', 
+'Glacier 360 Degrees Rotating Transparent Racing Car with 3D Flashing Led Lights has Transparent body to see gear mechanism with awesome sound effects .It is a bump and go car so the fun never stops.',
+'assets/images/products/toys/toy-4.jpg' , 1, 100, 5.99, 4, NOW());
+
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Toy-1004', 'Miss & Chief Z4 Battery Car for kids Riding with Music, Swing, Safety Belt and Parental Remote Car Battery Operated Ride On  (Orange)', 
+'There are two options of driving, one is manual mode in which kids will drive the car manually in all 4 directions and 2nd mode is parental in which parents will control the car with the help of Bluetooth remote within the range of 20 m.',
+'assets/images/products/toys/toy-5.jpg' , 1, 100, 157.96, 4, NOW());
+
+INSERT INTO PRODUCT (sku, name, description, image_url, active, stock, price, category_id, date_created)
+VALUES ('Toy-1005', 'Tector 4X4 Big 2.4Ghz RideOn Remote Control & App Based Jeep Jeep Battery Operated Ride On  (Blue, Black)', 
+'Tector presents Big 2.4Ghz RideOn 4X4 Remote Control & App Based Jeep Swing Option & App Controlfor your kids with attractive lights&musics. Features - Openable Doors | Safety Seart Belt | Shock Absorber | Bluetooth Music Player ',
+'assets/images/products/toys/toy-6.jpg' , 1, 100, 284.32, 4, NOW());

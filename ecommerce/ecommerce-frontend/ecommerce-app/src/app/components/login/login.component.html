@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="m-4">
+        <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+
+            <!-- customer form group -->
+            <div formGroupName="customerLogin" class="form-area">
+
+                <!-- if the credentials entered is wrong -->
+                <div *ngIf="invalidCredentials" class="alert alert-danger" role="alert">
+                    Invalid login credentials please check!!!
+                </div>
+
+                <h4>Customer Login</h4>
+
+                <div class="form-group">
+
+                    <div class=" row mt-3 mb-3">
+                        <label for="email" class="col-sm-3 col-form-label col-form-label-lg">Email</label>
+                        <div class="col-sm-8 ">
+                            <input formControlName="email" id="email" type="email" class="form-control "
+                                placeholder="Enter your email">
+
+                            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+                                class="alert alert-danger mt-1">
+                                <div *ngIf="email?.errors?.['required']">
+                                    Email is required
+                                </div>
+
+                                <div *ngIf="email?.errors?.['pattern']">
+                                    Enter a valid email address
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- password -->
+                    <div class=" row mt-3 mb-3">
+                        <label for="password" class="col-sm-3 col-form-label col-form-label-lg">password</label>
+                        <div class="col-sm-8 ">
+                            <input formControlName="password" id="password" type="password" class="form-control "
+                                placeholder="Enter your Password">
+
+                            <div *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+                                class="alert alert-danger mt-1">
+                                <div *ngIf="password?.errors?.['required']">
+                                    password is required
+                                </div>
+
+                                <div *ngIf="password?.errors?.['pattern']">
+                                    <p>Enter a valid password.</p>  
+                                    <p>must contain a uppercase, lowecase , special character and digit. </p>
+                                    <p>should be at least of 8 characters.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary" style="padding: 0.375rem 6.75rem;"> Login </button>
+            </div>
+
+        </form> 
+        
+        <div class="d-flex justify-content-center text-lg-start">
+            
+            <p class=" fw-bold mt-2 pt-1 mb-0">Don't have an account? 
+                <a class="link-danger" routerLink="../register">Register</a>
+            </p>
+        </div>
+
+   </div>
+</div>

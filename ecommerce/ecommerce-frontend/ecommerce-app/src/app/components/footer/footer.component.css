@@ -1,0 +1,19 @@
+footer ul li a{
+    color:#fff
+}
+footer{
+    background:#232324;
+    position:relative;
+    text-align:center;
+    margin-bottom: -15px;
+}
+footer li a{
+    color:#313131;
+    font-weight:500
+}
+footer ul li{
+    display:inline-block;
+    font-size:14px;
+    padding:10px 20px
+}
+

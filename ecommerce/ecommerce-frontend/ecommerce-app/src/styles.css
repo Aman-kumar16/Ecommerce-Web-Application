@@ -1,0 +1,9 @@
+.form-area{
+    border: 2px solid rgb(141, 241, 234);
+    background-color: rgb(86, 118, 121);
+    color: white;
+    width: 80%;
+    margin: 1.5% auto;
+    padding: auto;
+    text-align: center;
+}

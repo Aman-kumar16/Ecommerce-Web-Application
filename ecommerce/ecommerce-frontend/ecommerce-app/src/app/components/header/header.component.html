@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <div class="container-fluid d-flex flex-row justify-content-center">
+    
+    <!-- logo and title of website -->
+    <div class="conatiner" style="margin-left: 2rem;">
+    <a class="navbar-brand" routerLink="products">
+      <img src="../../../assets/images/onlineShopLogo.jpg" width="50" height="35" class="d-inline-block align-top" alt="onlineShopLogo">
+      OnlineShop
+    </a>
+    </div>
+
+
+    <!-- search bar -->
+    <div class="container">
+        <div class="input-group my-2 my-lg-0 ms-auto me-auto w-50">
+          
+          <input #myInput type="text" 
+                  placeholder="Search products" 
+                  class="form-control mr-sm-2 "
+                  (keyup.enter)="doSearch(myInput.value)"   />
+          
+          <button (click)="doSearch(myInput.value)"
+                  class="btn btn-dark btn-outline-light btn-sm my-sm-0 rounded-lg" >Search </button>
+        </div>
+    </div>  
+    
+  
+    <!-- cart logo and login/register -->
+    <div class="conatiner" style="margin-right: 2rem;">
+        <ul class="navbar-nav ms-auto">
+      
+             <app-cart-status></app-cart-status>
+          
+          <li class="nav-item active ">
+            <a *ngIf="!loggedIn" class="nav-link" style="color:white;" routerLink="login">Login</a>
+          </li>
+
+          <li class="nav-item active ">
+            <a *ngIf="loggedIn" (click)="logoutCustomer()" class="nav-link" style="color:white;" routerLink="products">Logout</a>
+          </li>
+
+          <li class="nav-item active ">
+            <a class="nav-link" style="color:white;" routerLink="register">Register</a>
+          </li>
+          
+        </ul>
+    </div>
+    
+  </div>
+
+</nav>

@@ -1,0 +1,16 @@
+<!-- top category menu  -->
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="d-flex justify-content-center bg-secondary category">
+            <ul *ngFor="let category of productCategories" class="nav nav-pills align-items-center category-item">
+                <li class="nav-item">
+                    <a routerLink="/category/{{ category.id }}" routerLinkActive="active-link" class=" nav-link px-4 items">{{category.categoryName}}</a>
+                </li>
+            </ul> 
+        </div>
+    </div>
+
+
+</div>

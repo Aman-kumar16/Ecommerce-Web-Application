@@ -1,0 +1,17 @@
+.cart-icon{
+    margin-right: 20px;
+    padding-right: 0.2rem;
+    width: 5rem;
+}
+
+li .cart-value{
+    display: inline;
+    font-size:15px;
+    color: rgb(255, 255, 255);
+    background: rgb(236, 4, 4);
+    border-radius:60%;
+    padding: 0 3px;
+    position:relative;
+    left:-8px;
+    top:-10px;
+}
